@@ -5,7 +5,6 @@ Tech:
 - Vue (x)
 - Bootstrap (x)
 - TailwindCss (x)
-- HeadlessUI (x)
 - VueRouter (x)
 - Axios (x)
 - VueX (x)
@@ -13,4 +12,4 @@ Tech:
 - VueViewer (x)
 - VuePageTransition (x)
 - VueMultiselect (x)
-- SwiperSlide (x)
+- Vue3-flicking (x)

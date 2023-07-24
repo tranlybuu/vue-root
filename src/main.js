@@ -13,6 +13,9 @@ import './assets/css/style.css'
 import 'sweetalert2/dist/sweetalert2.min.css';
 import 'viewerjs/dist/viewer.css'
 import 'vue-multiselect/dist/vue-multiselect.css'
+import "@egjs/vue3-flicking/dist/flicking.css";
+import "@egjs/vue3-flicking/dist/flicking-inline.css";
+import "@egjs/flicking-plugins/dist/flicking-plugins.css";
 
 const app = createApp(App);
 app.use(VueSweetalert2);
