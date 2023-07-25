@@ -1,10 +1,10 @@
 <template>
-  <div class="container py-4 grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-2">
+  <div class="mx-auto container py-4 grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-2">
     <div class="flex flex-col gap-4">
       <h1 class="font-extrabold text-2xl">Vue Example Page</h1>
       <ul>
-        <li><a class="text-lg" target="_blank" href="https://getbootstrap.com/docs/5.0/getting-started/introduction/">Bootstrap 5</a></li>
         <li><a class="text-lg" target="_blank" href="https://tailwindcss.com/">TailwindCss</a></li>
+        <li><a class="text-lg" target="_blank" href="https://daisyui.com/">DaisyUI</a></li>
         <li><a class="text-lg" target="_blank" href="https://router.vuejs.org/">VueRouter</a></li>
         <li><a class="text-lg" target="_blank" href="https://www.npmjs.com/package/axios">Axios</a></li>
         <li><a class="text-lg" target="_blank" href="https://vuex.vuejs.org/">VueX</a></li>
@@ -20,8 +20,11 @@
       <h1 class="text-blue-500 text-xl font-semibold">Example</h1>
 
       <div>
-        <p class="text-lg">Bootstrap 5 - TailwindCss</p>
-        
+        <p class="text-lg">TailwindCss - DaisyUI</p>
+        <div class="alert">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-info shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+          <span>Theme Cupcake - DaisyUI</span>
+        </div>
       </div>
   
       <button class="btn btn-info w-fit" @click="showAlert">Show Sweet Alert 2</button>

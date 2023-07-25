@@ -3,8 +3,8 @@
 Tech:
 
 - Vue (x)
-- Bootstrap (x)
 - TailwindCss (x)
+- DaisyUI (x)
 - VueRouter (x)
 - Axios (x)
 - VueX (x)

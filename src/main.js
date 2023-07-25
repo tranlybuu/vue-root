@@ -7,8 +7,6 @@ import VuePageTransition from 'vue-page-transition'
 import VueViewer from 'v-viewer'
 
 // Css
-import 'bootstrap'
-import 'bootstrap/dist/css/bootstrap.min.css'
 import './assets/css/style.css'
 import 'sweetalert2/dist/sweetalert2.min.css';
 import 'viewerjs/dist/viewer.css'
