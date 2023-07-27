@@ -7,7 +7,7 @@ Tech:
 - DaisyUI (x)
 - VueRouter (x)
 - Axios (x)
-- VueX (x)
+- Pinia (x)
 - SweetAlert2 (x)
 - VueViewer (x)
 - VuePageTransition (x)

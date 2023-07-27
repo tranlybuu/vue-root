@@ -1,7 +1,7 @@
 import { createApp } from "vue";
+import { createPinia } from 'pinia'
 import App from './App.vue'
 import router from './router'
-import store from "@/stores";
 import VueSweetalert2 from 'vue-sweetalert2';
 import VuePageTransition from 'vue-page-transition'
 import VueViewer from 'v-viewer'
@@ -20,5 +20,5 @@ app.use(VueSweetalert2);
 app.use(VuePageTransition);
 app.use(VueViewer);
 app.use(router);
-app.use(store);
+app.use(createPinia());
 app.mount("#app");

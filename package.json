@@ -14,6 +14,7 @@
     "axios": "^0.21.1",
     "core-js": "^3.6.5",
     "jquery": "^3.6.0",
+    "pinia": "^2.1.6",
     "popper.js": "^1.16.1",
     "swiper": "^10.0.4",
     "v-viewer": "^3.0.11",
@@ -21,8 +22,7 @@
     "vue-multiselect": "^3.0.0-beta.2",
     "vue-page-transition": "^0.2.2",
     "vue-router": "^4.0.6",
-    "vue-sweetalert2": "^5.0.5",
-    "vuex": "^4.0.2"
+    "vue-sweetalert2": "^5.0.5"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",

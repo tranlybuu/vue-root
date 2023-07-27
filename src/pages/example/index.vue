@@ -7,7 +7,7 @@
         <li><a class="text-lg" target="_blank" href="https://daisyui.com/">DaisyUI</a></li>
         <li><a class="text-lg" target="_blank" href="https://router.vuejs.org/">VueRouter</a></li>
         <li><a class="text-lg" target="_blank" href="https://www.npmjs.com/package/axios">Axios</a></li>
-        <li><a class="text-lg" target="_blank" href="https://vuex.vuejs.org/">VueX</a></li>
+        <li><a class="text-lg" target="_blank" href="https://pinia.vuejs.org/">Pinia</a></li>
         <li><a class="text-lg" target="_blank" href="https://sweetalert2.github.io/">SweetAlert2</a></li>
         <li><a class="text-lg" target="_blank" href="https://github.com/mirari/v-viewer/tree/v3">VueViewer</a></li>
         <li><a class="text-lg" target="_blank" href="https://www.npmjs.com/package/vue-page-transition">VuePageTransition</a></li>
@@ -24,6 +24,17 @@
         <div class="alert">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-info shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
           <span>Theme Cupcake - DaisyUI</span>
+        </div>
+      </div>
+
+      <div>
+        <p class="text-lg">Store - Pinia</p>
+        <div class="flex gap-2">
+          <p class="text-lg font-semibold my-auto">Count: {{store.count}}</p>
+          <p class="text-lg font-semibold my-auto">DoubleCount: {{store.doubleCount}}</p>
+          <button class="btn btn-primary" @click="store.decrement">-1</button>
+          <button class="btn btn-primary" @click="store.increment">+1</button>
+          <button class="btn btn-primary" @click="store.resetCount">Reset</button>
         </div>
       </div>
   
@@ -70,35 +81,24 @@
             <p class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-bold text-3xl text-white">6</p>
           </div>
           <template #viewport>
-            <!-- <span class="flicking-arrow-prev is-thin is-circle"></span>
-            <span class="flicking-arrow-next is-thin is-circle"></span> -->
             <div class="flicking-pagination"></div>
+            <span class="flicking-arrow-prev"></span>
+            <span class="flicking-arrow-next"></span>
           </template>
         </Flicking>
-        <div class="flex gap-2 justify-center">
-          <button class="btn btn-outline-dark" @click="clickToBackSlide">Back slide</button>
-          <button class="btn btn-outline-dark" @click="clickToNextSlide">Next slide</button>
-        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { ref } from 'vue'
+import { useExampleStore } from '@/stores/examStore'
 import Flicking from "@egjs/vue3-flicking";
-import { Fade, AutoPlay, Pagination, Perspective } from "@egjs/flicking-plugins";
+import { Fade, AutoPlay, Pagination, Perspective, Arrow } from "@egjs/flicking-plugins";
 import VueMultiselect from 'vue-multiselect'
-
-// import "@egjs/flicking-plugins/dist/arrow.css";
 import "@egjs/flicking-plugins/dist/pagination.css";
-
-const plugins = [
-  new Perspective({ rotate: -1, scale: 2, perspective: 600 }),
-  new Pagination({  type: 'scroll' }), 
-  new Fade(), 
-  new AutoPlay({ duration: 1000, direction: "NEXT", stopOnHover: false })
-]
+import "@egjs/flicking-plugins/dist/arrow.css";
 
 export default {
   name: "example-page",
@@ -106,49 +106,29 @@ export default {
     VueMultiselect,
     Flicking,
   },
-  data () {
+  setup() {
+    const store = useExampleStore()
+    const selected = ref(null)
+    const options = ref(['list', 'of', 'options'])
+    const flickingOptions = { 
+      circular: true, 
+      panelsPerView: 5
+    }
+    const plugins = [
+      new Perspective({ rotate: -1, scale: 2, perspective: 300 }),
+      new Pagination({  type: 'scroll' }), 
+      new Fade(), 
+      new Arrow(), 
+      new AutoPlay({ duration: 1000, direction: "NEXT", stopOnHover: false })
+    ]
     return {
-      selected: null,
-      options: ['list', 'of', 'options'],
-      isOpen: false,
-      flickingOptions: { 
-        circular: true, 
-        moveType: 'freeScroll',
-        panelsPerView: 3
-      },
-      plugins
+      plugins, selected, options, flickingOptions, store
     }
   },
   methods: {
-    ...mapActions('test', ['testVueX']),
-    getEntry() {
-      return this.testVueX()
-    },
     showAlert() {
       this.$swal('Hello Vue world!!!');
     },
-    clickToBackSlide() {
-      this.$refs.flicking.prev();
-    },
-    clickToNextSlide() {
-      this.$refs.flicking.next();
-    }
   },
-  created() {
-    console.log(this.getEntry())
-  }
 };
 </script>
-
-<style>
-.swiper-container {
-  width: 100%;
-  height: 100%;
-}
-
-.swiper-slide {
-  text-align: center;
-  font-size: 18px;
-  background: #fff;
-}
-</style>
