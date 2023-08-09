@@ -17,14 +17,16 @@
     </div>
     
     <div class="flex flex-col gap-6 md:col-span-2">
-      <h1 class="text-blue-500 text-xl font-semibold">Example</h1>
+      <h1 class="text-primary text-xl font-semibold">Example</h1>
 
       <div>
         <p class="text-lg">TailwindCss - DaisyUI</p>
-        <div class="alert">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-info shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-          <span>Theme Cupcake - DaisyUI</span>
+        <div class="flex gap-1 mb-1 flex-wrap">
+          <button v-for="(item, index) in themes" :key="'theme'+index" class="btn" @click="changeTheme(item.value)">
+            {{item.value}}
+          </button>
         </div>
+        <p class="font-semibold">Current Theme: {{currentTheme}} - DaisyUI</p>
       </div>
 
       <div>
@@ -41,7 +43,7 @@
       <button class="btn btn-info w-fit" @click="showAlert">Show Sweet Alert 2</button>
   
       <div class="flex gap-4" v-viewer>
-        <p class="my-auto">Vue Viewer: </p>
+        <p class="my-auto text-lg">Vue Viewer: </p>
         <img class="rounded-full w-10 h-10 object-cover" src="@/assets/img/avt.jpg" alt="avt">
       </div>
   
@@ -62,22 +64,22 @@
           :cameraClass="''"
           :plugins="plugins"
           @move-end="onMoveEnd">
-          <div class="relative panel w-full h-64 bg-red-700">
+          <div class="relative panel w-full drop-shadow-2xl h-64 bg-primary">
             <p class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-bold text-3xl text-white">1</p>
           </div>
-          <div class="relative panel w-full h-64 bg-blue-700">
+          <div class="relative panel w-full drop-shadow-2xl h-64 bg-secondary">
             <p class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-bold text-3xl text-white">2</p>
           </div>
-          <div class="relative panel w-full h-64 bg-green-700">
+          <div class="relative panel w-full drop-shadow-2xl h-64 bg-accent">
             <p class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-bold text-3xl text-white">3</p>
           </div>
-          <div class="relative panel w-full h-64 bg-slate-700">
+          <div class="relative panel w-full drop-shadow-2xl h-64 bg-info">
             <p class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-bold text-3xl text-white">4</p>
           </div>
-          <div class="relative panel w-full h-64 bg-yellow-700">
+          <div class="relative panel w-full drop-shadow-2xl h-64 bg-success">
             <p class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-bold text-3xl text-white">5</p>
           </div>
-          <div class="relative panel w-full h-64 bg-amber-700">
+          <div class="relative panel w-full drop-shadow-2xl h-64 bg-warning">
             <p class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-bold text-3xl text-white">6</p>
           </div>
           <template #viewport>
@@ -111,18 +113,57 @@ export default {
     const selected = ref(null)
     const options = ref(['list', 'of', 'options'])
     const flickingOptions = { 
-      circular: true, 
+      circular: true,
       panelsPerView: 5
     }
     const plugins = [
       new Perspective({ rotate: -1, scale: 2, perspective: 300 }),
-      new Pagination({  type: 'scroll' }), 
-      new Fade(), 
-      new Arrow(), 
+      new Pagination({  type: 'scroll' }),
+      new Fade(),
+      new Arrow(),
       new AutoPlay({ duration: 1000, direction: "NEXT", stopOnHover: false })
     ]
+    const themes = [
+      {value: "light"},
+      {value: "dark"},
+      {value: "cupcake"},
+      {value: "bumblebee"},
+      {value: "emerald"},
+      {value: "corporate"},
+      {value: "synthwave"},
+      {value: "retro"},
+      {value: "cyberpunk"},
+      {value: "valentine"},
+      {value: "halloween"},
+      {value: "garden"},
+      {value: "forest"},
+      {value: "aqua"},
+      {value: "lofi"},
+      {value: "pastel"},
+      {value: "fantasy"},
+      {value: "wireframe"},
+      {value: "black"},
+      {value: "luxury"},
+      {value: "dracula"},
+      {value: "cmyk"},
+      {value: "autumn"},
+      {value: "business"},
+      {value: "acid"},
+      {value: "lemonade"},
+      {value: "night"},
+      {value: "coffee"},
+      {value: "winter"},
+    ]
+    const currentTheme = ref("cupcake")
+    const changeTheme = (theme) => {
+      if (currentTheme.value != theme) { 
+        const element = document.querySelector('[data-theme="' + currentTheme.value + '"]');
+        currentTheme.value = theme
+        element.setAttribute('data-theme', theme);
+      }
+    }
     return {
-      plugins, selected, options, flickingOptions, store
+      plugins, selected, options, flickingOptions, store, themes, currentTheme, changeTheme
     }
   },
   methods: {
