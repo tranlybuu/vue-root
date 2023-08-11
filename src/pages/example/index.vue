@@ -1,5 +1,5 @@
 <template>
-  <div class="mx-auto container py-4 grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-2">
+  <div class="mx-auto container py-4 grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-2 min-h-screen">
     <div class="flex flex-col gap-4">
       <h1 class="font-extrabold text-2xl">Vue Example Page</h1>
       <ul>
@@ -63,24 +63,25 @@
           :cameraTag="'div'"
           :cameraClass="''"
           :plugins="plugins"
-          @move-end="onMoveEnd">
-          <div class="relative panel w-full drop-shadow-2xl h-64 bg-primary">
-            <p class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-bold text-3xl text-white">1</p>
+          @move-end="onMoveEnd"
+          class="text-white font-bold text-3xl capitalize">
+          <div class="relative panel w-full shadow-lg h-64 bg-primary text-center">
+            <p class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 drop-shadow-lg">primary color</p>
           </div>
-          <div class="relative panel w-full drop-shadow-2xl h-64 bg-secondary">
-            <p class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-bold text-3xl text-white">2</p>
+          <div class="relative panel w-full shadow-lg h-64 bg-secondary text-center">
+            <p class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 drop-shadow-lg">secondary color</p>
           </div>
-          <div class="relative panel w-full drop-shadow-2xl h-64 bg-accent">
-            <p class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-bold text-3xl text-white">3</p>
+          <div class="relative panel w-full shadow-lg h-64 bg-accent text-center">
+            <p class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 drop-shadow-lg">accent color</p>
           </div>
-          <div class="relative panel w-full drop-shadow-2xl h-64 bg-info">
-            <p class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-bold text-3xl text-white">4</p>
+          <div class="relative panel w-full shadow-lg h-64 bg-info text-center">
+            <p class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 drop-shadow-lg">info color</p>
           </div>
-          <div class="relative panel w-full drop-shadow-2xl h-64 bg-success">
-            <p class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-bold text-3xl text-white">5</p>
+          <div class="relative panel w-full shadow-lg h-64 bg-success text-center">
+            <p class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 drop-shadow-lg">success color</p>
           </div>
-          <div class="relative panel w-full drop-shadow-2xl h-64 bg-warning">
-            <p class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-bold text-3xl text-white">6</p>
+          <div class="relative panel w-full shadow-lg h-64 bg-warning text-center">
+            <p class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-bold text-3xl">warning color</p>
           </div>
           <template #viewport>
             <div class="flicking-pagination"></div>
@@ -114,7 +115,7 @@ export default {
     const options = ref(['list', 'of', 'options'])
     const flickingOptions = { 
       circular: true,
-      panelsPerView: 5
+      panelsPerView: 3
     }
     const plugins = [
       new Perspective({ rotate: -1, scale: 2, perspective: 300 }),

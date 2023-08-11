@@ -3,9 +3,18 @@ import { createWebHistory, createRouter } from "vue-router";
 const routes =  [
   {
     path: "/",
-    alias: "/",
-    name: "example-page",
-    component: () => import("./pages/example")
+    name: "layout",
+    component: () => import("./pages"),
+    redirect: {
+      name: "example-page",
+    },
+    children: [
+      {
+        path: "/example-page",
+        name: "example-page",
+        component: () => import("./pages/example")
+      },
+    ]
   },
 ];
 
