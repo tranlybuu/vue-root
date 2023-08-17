@@ -92,24 +92,15 @@ export default {
             } else {
                 document.documentElement.classList.remove('dark')
             }
-            if (localStorage.getItem('color-theme')) {
-                if (localStorage.getItem('color-theme') === 'light') {
-                    document.documentElement.classList.add('dark');
-                    localStorage.setItem('color-theme', 'dark');
-                } else {
-                    document.documentElement.classList.remove('dark');
-                    localStorage.setItem('color-theme', 'light');
-                }
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('color-theme', 'light');
+                this.isDarkmode = true
             } else {
-                if (document.documentElement.classList.contains('dark')) {
-                    document.documentElement.classList.remove('dark');
-                    localStorage.setItem('color-theme', 'light');
-                } else {
-                    document.documentElement.classList.add('dark');
-                    localStorage.setItem('color-theme', 'dark');
-                }
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('color-theme', 'dark');
+                this.isDarkmode = false
             }
-            this.isDarkmode = localStorage.getItem('color-theme') === 'light' ? true : false
         }
     },
     computed: {
@@ -118,7 +109,13 @@ export default {
         }
     },
     created() {
-        this.toggleDarkMode()
+      if (localStorage.getItem('color-theme') === 'dark') {
+        document.documentElement.classList.add('dark');
+        this.isDarkmode = true
+      } else {
+        localStorage.setItem('color-theme', 'light');
+        localStorage.setItem('color-theme', 'light');
+      }
     }
 }
 </script>
