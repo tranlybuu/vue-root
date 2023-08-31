@@ -40,7 +40,7 @@
         </div>
       </div>
   
-      <button class="btn btn-info w-fit" @click="showAlert">Show Sweet Alert 2</button>
+      <button class="btn btn-info w-fit" @click="showAlert">Click to show Swal</button>
   
       <div class="flex gap-4" v-viewer>
         <p class="my-auto text-lg">Vue Viewer: </p>
